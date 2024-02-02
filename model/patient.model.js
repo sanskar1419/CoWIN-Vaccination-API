@@ -1,11 +1,9 @@
 export default class PatientModel {
-  constructor(name, price, sizes, imageURL, category, description, id) {
+  constructor(name, userType, userName, id) {
     this._id = id;
     this.name = name;
-    this.description = description;
-    this.imageURL = imageURL;
-    this.category = category;
-    this.price = price;
-    this.sizes = sizes;
+    this.userType = userType;
+    this.userName = userName;
+    this.password = password;
   }
 }
