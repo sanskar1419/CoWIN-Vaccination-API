@@ -2,9 +2,14 @@
 import express from "express";
 import doctorRouter from "./routes/doctors.route.js";
 import patientRouter from "./routes/patients.route.js";
+import bodyParser from "body-parser";
 
 // Initializing Express
 const app = new express();
+
+// Using body parser to parse client data
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // Defining route and redirecting them for the request
 app.use("/api/doctors", doctorRouter);

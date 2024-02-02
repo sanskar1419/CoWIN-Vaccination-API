@@ -16,6 +16,13 @@ const userSchema = new mongoose.Schema({
       "Need to mention type of user, it either can be Patient or Doctor",
     ],
   },
+  userName: {
+    type: String,
+    minLength: [3, "User Name should be minimum of 3 character"],
+    maxLength: [15, "User Name can't be greater than 15 characters"],
+    unique: true,
+    required: true,
+  },
   password: {
     type: String,
   },
