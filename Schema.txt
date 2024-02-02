@@ -1,0 +1,14 @@
+User Schema
+
+Type - enum(Patient or Doctor)
+Name - name of doctor
+Username - for patient it will be there phone number
+password - only of doctor
+reports - array of all the reports 
+
+Report Schema
+
+Patient 
+Doctor
+Covid-status : enum [Negative, Travelled-Quarantine, Symptoms-Quarantine, Positive-Admit]
+Date of registration by doctor
