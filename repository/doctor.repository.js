@@ -14,4 +14,13 @@ export default class DoctorRepository {
       throw new Error("Something went wrong with database");
     }
   }
+
+  async findDoctor(userName) {
+    try {
+      return await User.findOne({ userName });
+    } catch (error) {
+      console.log(error);
+      throw new Error("Something went wrong with database");
+    }
+  }
 }

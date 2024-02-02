@@ -9,5 +9,8 @@ const doctorController = new DoctorController();
 doctorRouter.post("/register", doctorRegistrationDataMiddleware, (req, res) => {
   doctorController.registerDoctor(req, res);
 });
+doctorRouter.post("/login", (req, res) => {
+  doctorController.signIn(req, res);
+});
 
 export default doctorRouter;
