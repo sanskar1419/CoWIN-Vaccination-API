@@ -1,7 +1,10 @@
+// Importing necessary file, module and package , and creating instances of them
 import User from "../schema/user.schema.js";
 import Report from "../schema/report.schema.js";
 
+// Defining PatientRepository class and there method
 export default class PatientRepository {
+  // Method for adding Patient to the db
   async add(newPatient) {
     try {
       const existingPatient = await User.findOne({
@@ -18,6 +21,7 @@ export default class PatientRepository {
     }
   }
 
+  // Method for adding report to db
   async addNewReport(doctorId, id, status) {
     try {
       const patient = await User.findOne({ _id: id });
@@ -47,6 +51,7 @@ export default class PatientRepository {
     }
   }
 
+  // Method for getting all report of particular patient
   async allReports(id) {
     try {
       const reports = await Report.find({ patient: id })

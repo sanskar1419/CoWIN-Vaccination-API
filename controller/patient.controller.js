@@ -1,11 +1,15 @@
+// Importing necessary file, module and package , and creating instances of them
 import PatientRepository from "../repository/patient.repository.js";
 import PatientModel from "../model/patient.model.js";
 
+// Defining PatientController class and there method
 export default class PatientController {
   constructor() {
+    // Creating Instance of PatientRepository
     this.patientRepository = new PatientRepository();
   }
 
+  // Method for registering patient by doctor
   async registerPatient(req, res) {
     try {
       //   console.log(req.body);
@@ -27,6 +31,8 @@ export default class PatientController {
       throw new Error("Something went wrong with database");
     }
   }
+
+  // Method for creating report by doctor
   async createReport(req, res) {
     try {
       const { status } = req.body;
@@ -59,6 +65,8 @@ export default class PatientController {
       throw new Error("Something went wrong with database");
     }
   }
+
+  // Method for getting all report of particular patient
   async patientAllReport(req, res) {
     try {
       const { id } = req.params;

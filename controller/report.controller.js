@@ -1,10 +1,14 @@
+// Importing necessary file, module and package , and creating instances of them
 import ReportRepository from "../repository/report.repository.js";
 
+// Defining ReportRepository class and there method
 export default class ReportController {
   constructor() {
+    //  Creating ReportRepository instance
     this.reportRepository = new ReportRepository();
   }
 
+  // Method for filtering all reports based on status
   async filterReports(req, res) {
     try {
       const { status } = req.params;

@@ -1,14 +1,18 @@
+// Importing necessary file, module and package , and creating instances of them
 import "../env.js";
 import DoctorRepository from "../repository/doctor.repository.js";
 import DoctorModel from "../model/doctor.model.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
+// Defining DoctorController class and there method
 export default class DoctorController {
   constructor() {
+    // Creating Instance of DoctorRepository
     this.doctorRepository = new DoctorRepository();
   }
 
+  // Register Doctor Method
   async registerDoctor(req, res) {
     try {
       //   console.log(req.body);
@@ -29,6 +33,8 @@ export default class DoctorController {
       throw new Error("Something went wrong with database");
     }
   }
+
+  // SignIn Doctor Method
   async signIn(req, res) {
     try {
       const { userName, password } = req.body;

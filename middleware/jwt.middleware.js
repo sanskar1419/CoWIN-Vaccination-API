@@ -1,3 +1,4 @@
+// Importing necessary file, module and package , and creating instances of them
 import "../env.js";
 import jwt from "jsonwebtoken";
 
@@ -25,4 +26,5 @@ const jwtAuth = (req, res, next) => {
   next();
 };
 
+// Exporting jwtAuth
 export default jwtAuth;

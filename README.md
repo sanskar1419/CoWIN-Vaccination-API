@@ -7,7 +7,7 @@ Hospital API is a server side api where client as doctor can register and login 
 To view the web application go to this link
 
 ```bash
-  https://csv-uploader-o7ij.onrender.com
+  https://hospital-api-kqkr.onrender.com
 ```
 
 ## Swagger Hospital API Documentation
@@ -21,7 +21,7 @@ To view the API Documentation for local hosting go to this link
 To view the API Documentation for render deployment go to this link
 
 ```bash
-  http://127.0.0.1:8000/api-docs/
+  https://hospital-api-kqkr.onrender.com/api-docs/
 ```
 
 ## Tech Stack

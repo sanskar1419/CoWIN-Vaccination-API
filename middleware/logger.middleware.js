@@ -1,9 +1,11 @@
+// Importing necessary file, module and package , and creating instances of them
 import fs from "fs";
 import { createLogger, format, transports } from "winston";
 
 const { combine, timestamp, label, prettyPrint } = format;
 const fsPromise = fs.promises;
 
+// Formatting Logger Data
 const logger = createLogger({
   format: combine(
     label({ label: "Data is being stored here" }),
@@ -18,7 +20,7 @@ const logger = createLogger({
 });
 
 const loggerMiddleware = async (req, res, next) => {
-  // 1. Log request body.
+  // Log request body.
   if (!req.url.includes("login") && !req.url.includes("register")) {
     const logData = JSON.stringify(req.body);
     await logger.log({
@@ -31,4 +33,6 @@ const loggerMiddleware = async (req, res, next) => {
   }
   next();
 };
+
+// Exporting loggerMiddleware
 export default loggerMiddleware;

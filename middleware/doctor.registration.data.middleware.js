@@ -1,3 +1,4 @@
+// Importing necessary file, module and package , and creating instances of them
 import { body, validationResult } from "express-validator";
 
 const doctorRegistrationDataMiddleware = async (req, res, next) => {
@@ -41,4 +42,5 @@ const doctorRegistrationDataMiddleware = async (req, res, next) => {
   }
 };
 
+// Exporting doctorRegistrationDataMiddleware
 export default doctorRegistrationDataMiddleware;

@@ -1,3 +1,4 @@
+// Defining PatientModel class
 export default class PatientModel {
   constructor(name, userType, userName, id) {
     this._id = id;
