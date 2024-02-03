@@ -19,25 +19,54 @@ export default class PatientRepository {
   }
 
   async addNewReport(doctorId, id, status) {
-    const patient = await User.findOne({ _id: id });
-    const doctor = await User.findOne({ _id: doctorId });
-    if (!patient) {
-      return;
-    }
-    const report = await Report.create({
-      patient: id,
-      attendedDoctor: doctorId,
-      covidStatus: status,
-      date: new Date(),
-    });
+    try {
+      const patient = await User.findOne({ _id: id });
+      const doctor = await User.findOne({ _id: doctorId });
+      if (!patient) {
+        return;
+      }
+      const report = await Report.create({
+        patient: id,
+        attendedDoctor: doctorId,
+        covidStatus: status,
+        date: new Date(),
+      });
 
-    if (report) {
-      patient.reports.push(report);
-      doctor.reports.push(report);
-      patient.save();
-      doctor.save();
-    }
+      console.log(doctor);
+      if (report) {
+        patient.reports.push(report);
+        doctor.reports.push(report);
+        patient.save();
+        doctor.save();
+      }
 
-    return report;
+      return report;
+    } catch (error) {
+      console.log(error);
+      throw new Error("Something went wrong with database");
+    }
+  }
+
+  async allReports(id) {
+    try {
+      const reports = await Report.find({ patient: id })
+        .populate("attendedDoctor")
+        .sort("date");
+      // console.log(reports);
+
+      const reportData = reports.map((report) => {
+        return {
+          "Doctor Name": report.attendedDoctor.name,
+          "Covid Status": report.covidStatus,
+          "Check up date and time": report.date.toLocaleString(undefined, {
+            timeZone: "Asia/Kolkata",
+          }),
+        };
+      });
+      return reportData;
+    } catch (error) {
+      console.log(error);
+      throw new Error("Something went wrong with database");
+    }
   }
 }

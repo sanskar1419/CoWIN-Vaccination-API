@@ -15,7 +15,10 @@ export default class PatientController {
       if (!createdRecord) {
         res.status(404).send("Patient already exist. Kindly create report");
       } else {
-        res.status(201).send(createdRecord);
+        res.status(201).send({
+          Message: "Patient has been registered",
+          Patient: createdRecord,
+        });
       }
     } catch (error) {
       console.log(error);
@@ -27,6 +30,7 @@ export default class PatientController {
       const { status } = req.body;
       const { id } = req.params;
       const doctorId = req.userId;
+      // console.log(doctorId);
       if (
         status != "Negative" &&
         status != "Traveled - Quarantine" &&
@@ -48,6 +52,19 @@ export default class PatientController {
           Report: createdReport,
         });
       }
+    } catch (error) {
+      console.log(error);
+      throw new Error("Something went wrong with database");
+    }
+  }
+  async patientAllReport(req, res) {
+    try {
+      const { id } = req.params;
+      const reportData = await this.patientRepository.allReports(id);
+      res.status(200).send({
+        Message: "Here is your all reports",
+        Reports: reportData,
+      });
     } catch (error) {
       console.log(error);
       throw new Error("Something went wrong with database");

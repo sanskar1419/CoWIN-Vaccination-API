@@ -20,4 +20,8 @@ patientRouter.post("/:id/create_report", jwtAuth, (req, res) => {
   patientController.createReport(req, res);
 });
 
+patientRouter.get("/:id/all_reports", (req, res) => {
+  patientController.patientAllReport(req, res);
+});
+
 export default patientRouter;

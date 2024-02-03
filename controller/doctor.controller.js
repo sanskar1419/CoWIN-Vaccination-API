@@ -19,7 +19,10 @@ export default class DoctorController {
       if (!createdRecord) {
         res.status(404).send("Doctor Already exist");
       } else {
-        res.status(201).send(createdRecord);
+        res.status(201).send({
+          Message: "Doctor has been registered",
+          Doctor: createdRecord,
+        });
       }
     } catch (error) {
       console.log(error);
