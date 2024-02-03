@@ -1,4 +1,5 @@
 import User from "../schema/user.schema.js";
+import Report from "../schema/report.schema.js";
 
 export default class PatientRepository {
   async add(newPatient) {
@@ -15,5 +16,28 @@ export default class PatientRepository {
       console.log(error);
       throw new Error("Something went wrong with database");
     }
+  }
+
+  async addNewReport(doctorId, id, status) {
+    const patient = await User.findOne({ _id: id });
+    const doctor = await User.findOne({ _id: doctorId });
+    if (!patient) {
+      return;
+    }
+    const report = await Report.create({
+      patient: id,
+      attendedDoctor: doctorId,
+      covidStatus: status,
+      date: new Date(),
+    });
+
+    if (report) {
+      patient.reports.push(report);
+      doctor.reports.push(report);
+      patient.save();
+      doctor.save();
+    }
+
+    return report;
   }
 }

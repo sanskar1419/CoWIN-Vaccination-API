@@ -16,4 +16,8 @@ patientRouter.post(
   }
 );
 
+patientRouter.post("/:id/create_report", jwtAuth, (req, res) => {
+  patientController.createReport(req, res);
+});
+
 export default patientRouter;
