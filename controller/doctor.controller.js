@@ -17,10 +17,10 @@ export default class DoctorController {
       const newUser = new DoctorModel(name, "Doctor", userName, hashPassword);
       const createdRecord = await this.doctorRepository.add(newUser);
       if (!createdRecord) {
-        res.status(404).send("Doctor Already exist");
+        res.status(409).send("User Name Already exist");
       } else {
         res.status(201).send({
-          Message: "Doctor has been registered",
+          Message: "Doctor Registered",
           Doctor: createdRecord,
         });
       }
@@ -50,7 +50,7 @@ export default class DoctorController {
         );
         res.status(200).send(token);
       } else {
-        return res.status(400).send("Invalid Credentials");
+        return res.status(401).send("Invalid Credentials");
       }
     } catch (error) {
       console.log(error);

@@ -1,0 +1,239 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "description": "API for Hospital application",
+    "title": "Hospital API"
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:8000"
+    }
+  ],
+
+  "components": {
+    "securitySchemes": {
+      "JWT": {
+        "in": "header",
+        "name": "Authorization",
+        "type": "apiKey"
+      }
+    }
+  },
+
+  "paths": {
+    "/api/doctors/register": {
+      "post": {
+        "tags": ["Doctors"],
+        "summary": "Register Doctor",
+        "description": "Doctor register on the application",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "userName": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "confirmPassword": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Doctor Registered"
+          },
+          "409": {
+            "description": "User Name Already exist"
+          },
+          "400": {
+            "description": "Validation Error"
+          }
+        }
+      }
+    },
+
+    "/api/doctors/login": {
+      "post": {
+        "tags": ["Doctors"],
+        "summary": "Login Doctor",
+        "description": "Doctor login to get token",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userName": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Invalid Credentials"
+          }
+        }
+      }
+    },
+
+    "/api/patients/register": {
+      "post": {
+        "tags": ["Patients"],
+        "summary": "Register Patient",
+        "description": "Doctor register the patient",
+        "security": [{ "JWT": {} }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "userName": {
+                    "type": "Phone Number"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Patient Registered"
+          },
+          "409": {
+            "description": "Mobile Number is already registered"
+          },
+          "400": {
+            "description": "Validation Error"
+          }
+        }
+      }
+    },
+
+    "/api/patients/{id}/create_report": {
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Patient ID",
+            "required": "true",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": ["Patients"],
+        "summary": "Create Patient Report",
+        "description": "Doctor will create checkup report",
+        "security": [{ "JWT": {} }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Report Created"
+          },
+          "404": {
+            "description": "Patient Not Exist"
+          },
+          "400": {
+            "description": "Invalid Status"
+          }
+        }
+      }
+    },
+
+    "/api/patients/{id}/all_reports": {
+      "get": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Patient ID",
+            "required": "true",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": ["Patients"],
+        "summary": "Patient All Reports",
+        "description": "Get all reports of patients",
+        "responses": {
+          "200": {
+            "description": "List of all reports"
+          },
+          "404": {
+            "description": "No Report Found"
+          }
+        }
+      }
+    },
+
+    "/api/reports/{status}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "status",
+            "in": "path",
+            "description": "Status to filter",
+            "required": "true",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": ["Reports"],
+        "summary": "Filter reports by status",
+        "description": "Status on which all reports are needed",
+        "responses": {
+          "201": {
+            "description": "List of all reports"
+          },
+          "404": {
+            "description": "No Report Found"
+          },
+          "400": {
+            "description": "Not Valid Status"
+          }
+        }
+      }
+    }
+  }
+}

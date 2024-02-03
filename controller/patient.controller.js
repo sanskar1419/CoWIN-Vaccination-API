@@ -13,7 +13,9 @@ export default class PatientController {
       const newPatient = new PatientModel(name, "Patient", userName);
       const createdRecord = await this.patientRepository.add(newPatient);
       if (!createdRecord) {
-        res.status(404).send("Patient already exist. Kindly create report");
+        res
+          .status(404)
+          .send("Mobile Number is already registered. Kindly create report");
       } else {
         res.status(201).send({
           Message: "Patient has been registered",
@@ -61,10 +63,14 @@ export default class PatientController {
     try {
       const { id } = req.params;
       const reportData = await this.patientRepository.allReports(id);
-      res.status(200).send({
-        Message: "Here is your all reports",
-        Reports: reportData,
-      });
+      if (reportData.length > 0) {
+        res.status(200).send({
+          Message: "Here is your all reports",
+          Reports: reportData,
+        });
+      } else {
+        res.status(404).send("No Report Found");
+      }
     } catch (error) {
       console.log(error);
       throw new Error("Something went wrong with database");
