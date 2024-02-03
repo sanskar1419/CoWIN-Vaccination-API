@@ -4,6 +4,5 @@ export default class PatientModel {
     this.name = name;
     this.userType = userType;
     this.userName = userName;
-    this.password = password;
   }
 }
