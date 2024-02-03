@@ -113,7 +113,7 @@
                     "type": "string"
                   },
                   "userName": {
-                    "type": "Phone Number"
+                    "type": "Number"
                   }
                 }
               }
