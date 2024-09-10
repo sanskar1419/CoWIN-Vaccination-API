@@ -1,6 +1,6 @@
-# Hospital API
+# CoWIN Vaccination API
 
-Hospital API is a server side api where client as doctor can register and login on the web application. Simultaneously the doctor can register the patient and create checkup report. On the other hand patient can download all his past reports.
+CoWIN Vaccination API is a server side api where client as doctor can register and login on the web application. Simultaneously the doctor can register the patient and create checkup report. On the other hand patient can download all his past reports.
 
 ## Render Deployment Link
 

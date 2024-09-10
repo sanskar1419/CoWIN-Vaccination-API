@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "version": "1.0.0",
-    "description": "API for Hospital application",
-    "title": "Hospital API"
+    "description": "API for the doctors for Covid testing and quarantine+ well being of COVID-19 patients",
+    "title": "CoWIN Vaccination API"
   },
   "servers": [
     {
