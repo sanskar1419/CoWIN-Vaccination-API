@@ -164,4 +164,4 @@ $ http://localhost:8000
 
 ### Documentation
 
-![Documentation](https://github.com/sanskar1419/Project_Screenshot/blob/master/Hospital%20API/Screenshot%202024-02-03%20201753.png?raw=true)
+![Documentation](https://github.com/sanskar1419/Project_Screenshot/blob/master/Hospital%20API/Screenshot%202024-09-10%20131854.png?raw=true)
